@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function ExamPage() {
@@ -30,6 +30,15 @@ export default function ExamPage() {
     }
   };
 
+  // إيقاف الصوت تلقائياً عند الانتقال لصفحة أخرى
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
   const handleAnswer = (qId, option, correctAnswer) => {
     if (answeredQuestions[qId]) return; 
     if (option === correctAnswer) {
@@ -55,8 +64,8 @@ export default function ExamPage() {
         </nav>
 
         <div className="flex gap-6 items-center">
-          <button onClick={() => setShowModal('contact')} className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-400 hover:scale-105 transition-all">تواصل معنا 📧</button>
-          <button onClick={() => setShowModal('help')} className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-400 hover:scale-105 transition-all">؟ المساعدة</button>
+          <button onClick={() => { setShowModal('contact'); speak("اسأل سؤالك"); }} className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-400 hover:scale-105 transition-all">تواصل معنا 📧</button>
+          <button onClick={() => { setShowModal('help'); speak("كيف تستخدم الموقع؟"); }} className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-400 hover:scale-105 transition-all">؟ المساعدة</button>
         </div>
       </div>
 
@@ -92,7 +101,7 @@ export default function ExamPage() {
         </div>
       )}
 
-      {/* شريط النجوم الذهبية (تم تصحيح الـ key هنا) */}
+      {/* شريط النجوم الذهبية */}
       <div className="w-full bg-white/90 backdrop-blur-md p-4 flex justify-center gap-3 shadow-md sticky top-[88px] z-[90] border-b-2 border-blue-100">
         <span className="font-black text-[#1e3a8a] text-xl ml-4">نجومك الذهبية:</span>
         {[...Array(10)].map((_, i) => (
@@ -142,11 +151,25 @@ export default function ExamPage() {
             </button>
           </div>
         ) : (
+          /* عرض النتيجة الذكي بناءً على درجتك المطلوبة */
           <div className="w-full max-w-2xl bg-white p-20 rounded-[80px] shadow-2xl border-[20px] border-yellow-400 text-center mt-10">
-            <div className="text-[140px] mb-8">🏅</div>
-            <h2 className="text-6xl font-black text-[#1e3a8a] mb-6">مبارك الفوز!</h2>
-            <div className="text-8xl font-black text-yellow-500 mb-8">{score} / 10</div>
-            <p className="text-3xl text-slate-500 mb-12 font-bold leading-relaxed">لقد أصبحت الآن خبيراً في<br/>برنامج مايكروسوفت وورد</p>
+            {score < 5 ? (
+              /* إذا كانت الدرجة أقل من 5 */
+              <>
+                <div className="text-[140px] mb-8">🔄</div>
+                <h2 className="text-6xl font-black text-red-500 mb-6">حاول مرة أخرى</h2>
+                <div className="text-8xl font-black text-slate-400 mb-8">{score} / 10</div>
+                <p className="text-3xl text-slate-500 mb-12 font-bold leading-relaxed">أنت بطل وستنجح بالتأكيد في المرة القادمة! 💪</p>
+              </>
+            ) : (
+              /* إذا كانت الدرجة 5 أو أكثر (فوق الخمسة وتشجيع) */
+              <>
+                <div className="text-[140px] mb-8">🏅</div>
+                <h2 className="text-6xl font-black text-[#1e3a8a] mb-6">مبارك الفوز!</h2>
+                <div className="text-8xl font-black text-yellow-500 mb-8">{score} / 10</div>
+                <p className="text-3xl text-slate-500 mb-12 font-bold leading-relaxed">أنت بطل رائع وذكي جداً! 🎉<br/>لقد أصبحت الآن خبيراً في برنامج مايكروسوفت وورد</p>
+              </>
+            )}
             <button onClick={() => window.location.reload()} className="bg-[#1e3a8a] text-white py-6 px-20 rounded-full text-3xl font-black shadow-xl hover:scale-110 transition-transform border-b-8 border-blue-900">إعادة الاختبار 🔄</button>
           </div>
         )}

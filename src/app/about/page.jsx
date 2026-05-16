@@ -19,13 +19,20 @@ export default function AboutPage() {
 
   useEffect(() => {
     speak(welcomeMessage);
+
+    // هذا السطر يضمن أن الصوت يسكت فوراً ولا يكمل في أي صفحة ثانية عند الخروج
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.speechSynthesis.cancel();
+      }
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-[#f0f7ff] flex flex-col font-sans text-right relative" dir="rtl">
       
-      {/* الشريط العلوي الثابت */}
-      <div className="w-full bg-[#2b579a] px-8 py-4 flex justify-between items-center shadow-md">
+      {/* الشريط العلوي الثابت - تم تعديل اللون هنا إلى الأزرق الغامق #1e3a8a */}
+      <div className="w-full bg-[#1e3a8a] px-8 py-4 flex justify-between items-center shadow-md">
         <nav className="flex gap-8 text-white font-bold text-lg">
           <Link href="/" className="hover:text-gray-200 transition-colors">الصفحة الرئيسية</Link>
           <Link href="/about" className="text-[#ffcc00] border-b-2 border-[#ffcc00] pb-1">تعليمات</Link>
@@ -34,16 +41,17 @@ export default function AboutPage() {
           <Link href="/about-platform" className="hover:text-gray-200 transition-colors">حول الموقع</Link>
         </nav>
 
+        {/* الأزرار البيضاوية rounded-full وبنفس حجمها القديم */}
         <div className="flex gap-4">
           <button 
             onClick={() => { setShowContact(true); setShowHelp(false); speak("اسأل سؤالك"); }}
-            className="bg-white text-[#2b579a] px-6 py-2 rounded-xl font-bold text-md shadow-sm flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all outline-none"
+            className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold text-md shadow-sm flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all outline-none"
           >
             <span className="bg-blue-50 rounded px-1 flex items-center justify-center text-xs">📧</span> تواصل معنا
           </button>
           <button 
             onClick={() => { setShowHelp(true); setShowContact(false); speak("كيف تستخدم الموقع؟"); }}
-            className="bg-white text-[#2b579a] px-6 py-2 rounded-xl font-bold text-md shadow-sm flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all outline-none"
+            className="bg-white text-[#1e3a8a] px-6 py-2 rounded-full font-bold text-md shadow-sm flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all outline-none"
           >
             <span className="text-red-600 font-black text-xl leading-none">؟</span> المساعدة
           </button>
@@ -61,7 +69,7 @@ export default function AboutPage() {
           </button>
           <h1 className="text-6xl font-black text-[#2b579a]">تعليمات الموقع</h1>
           <p className="text-3xl font-bold text-[#2b579a] leading-loose max-w-3xl">
-            أهلاً بك يا بطل! يمكنك التنقل بين أقسام الموقع من الروابط بالأعلى، وإذا احتجت لأي مساعدة أو أردت مراسلتنا، استخدم أزرار (المساعدة) و (تواصل معنا) الموجودة في جهة اليسار.
+            أهلاً بك يا بطل! يمكنك التنقل بين أقسام الموقع من الروابط بالأعلى، وإذا احتجت لأي مساعدة أو أردت مراسلتنا، استخدم زر (المساعدة) و (تواصل معنا) الموجودة في جهة اليسار.
           </p>
         </div>
       </main>
