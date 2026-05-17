@@ -19,7 +19,17 @@ export default function TopicsPage() {
     intro: { title: "تعريف البرنامج", icon: "📝", description: "برنامج معالج نصوص يستخدم لكتابة الأبحاث وتنسيق الكتب وتنسيق النصوص بشكل احترافي.", tools: [{ name: "ما هو Word؟", info: "هو أحد برامج شركة مايكروسوفت أوفيس المتخصص في معالجة الكلمات وإنشاء المستندات.", img: "/word-intro.jpg" }] },
     open: { title: "فتح البرنامج", icon: "🚀", description: "تعلم الطريقة الصحيحة لتشغيل البرنامج للبدء في العمل.", tools: [{ name: "طريقة الفتح", info: "اضغط مرتين على أيقونة البرنامج الموجودة على سطح المكتب أو ابحث عنه في قائمة ابدأ.", img: "/lesson1.jpg" }] },
     screen: { title: "شاشة البرنامج", icon: "💻", description: "استعراض لمكونات واجهة المستخدم الرئيسية التي ستتعامل معها.", tools: [{ name: "واجهة البرنامج", info: "تحتوي على منطقة العمل البيضاء، وشريط الأدوات، ومسطرة القياس.", img: "/word-screen.jpg" }] },
-    file: { title: "قائمة ملف ", icon: "📁", description: "هذه القائمة مسؤولة عن إدارة الملف ككل من حيث الحفظ والفتح والطباعة.", tools: [{ name: "أداة إنشاء ملف جديد", info: "تستخدم لفتح صفحة بيضاء جديدة تماماً للبدء في كتابة مشروع جديد.", img: "/file-new.jpg" }, { name: "أداة فتح ملف", info: "تستخدم لفتح ملف كنت قد قمت بكتابته وحفظه سابقاً على جهاز الكمبيوتر.", img: "/file-open.jpg" }, { name: "أداة حفظ", info: "لحفظ التعديلات التي قمت بها داخل الملف لضمان عدم ضياعها.", img: "/file-save.jpg" }, { name: "أداة الطباعة", info: "لإرسال المستند إلى الطابعة والحصول عليه ورقياً.", img: "/file-print.jpg" }] },
+    file: { 
+      title: "قائمة ملف ", 
+      icon: "📁", 
+      description: "هذه القائمة مسؤولة عن إدارة الملف ككل من حيث الحفظ والفتح والطباعة.", 
+      tools: [
+        { name: "أداة إنشاء ملف جديد", info: "تستخدم لفتح صفحة بيضاء جديدة تماماً للبدء في كتابة مشروع جديد.", img: "/file-new.jpg" }, 
+        { name: "أداة فتح ملف", info: "تستخدم لفتح ملف كنت قد قمت بكتابته وحفظه سابقاً على جهاز الكمبيوتر.", img: "/file-open.jpg" }, 
+        { name: "أداة حفظ", info: "لحفظ التعديلات التي قمت بها داخل الملف لضمان عدم ضياعها.", img: "/file-save.jpg" }, 
+        { name: "أداة الطباعة", info: "", img: "" } // تم تفريغ محتوى أداة الطباعة بناءً على طلبك
+      ] 
+    },
     home: { title: "الشريط الرئيسي ", icon: "🏠", description: "يحتوي على أكثر الأدوات استخداماً لتنسيق النصوص والفقرات.", tools: [{ name: "نوع وحجم الخط", info: "تغيير شكل الخط وتكبير أو تصغير الكلام ليكون واضحاً للقراءة.", img: "/home-size.jpg" }, { name: "لون الخط", info: "تغيير لون الكتابة لتمييز العناوين أو الكلمات الهامة.", img: "/home-color.jpg" }, { name: "المحاذاة", info: "ترتيب النص ليكون في اليمين، اليسار، أو الوسط.", img: "/home-right.jpg" }] },
     insert: { title: "قائمة إدراج ", icon: "➕", description: "إضافة عناصر خارجية وكائنات متنوعة للمستند لتعزيز المحتوى.", tools: [{ name: "إدراج جدول", info: "إضافة جداول لتنظيم البيانات في صفوف وأعمدة بدقة.", img: "/insert-table.jpg" }, { name: "إدراج صور", info: "إضافة صور من الجهاز أو عبر الإنترنت لتوضيح الفكرة.", img: "/insert-image.jpg" }, { name: "الرأس والتذييل", info: "إضافة نص ثابت يظهر في أعلى أو أسفل كل صفحة.", img: "/insert-header.jpg" }] },
     design: { title: "قائمة تصميم", icon: "🎨", description: "التحكم في المظهر الجمالي العام للصفحة.", tools: [{ name: "حدود الصفحة", info: "إضافة إطار أو برواز حول الصفحة.", img: "/design-border.jpg" }] },
@@ -29,13 +39,12 @@ export default function TopicsPage() {
     review: { title: "قائمة مراجعة", icon: "✔️", description: "للتأكد من سلامة النص لغوياً وإملائياً قبل الاعتماد النهائي.", tools: [{ name: "تدقيق إملائي", info: "البحث عن الأخطاء المطبعية واللغوية وتصحيحها تلقائياً.", img: "/lesson9.jpg" }] },
     view: { title: "قائمة عرض", icon: "👁️", description: "تغيير طريقة رؤية المستند على الشاشة بما يناسب عملك.", tools: [{ name: "طرق العرض", info: "التحكم في درجة تقريب الصفحة أو تغيير وضع الرؤية.", img: "/lesson10.jpg" }] },
     
-    // البطاقة رقم 13 الجديدة
     download: { 
       title: "تحميل الملف", 
       icon: "📥", 
       description: "يمكنك تحميل كتاب الشرح التعليمي الشامل بصيغة PDF لمراجعته في أي وقت بدون إنترنت.",
       isFile: true,
-      fileUrl: "/word-handout.pdf" // تأكدي من وضع الملف في مجلد public بنفس هذا الاسم
+      fileUrl: "/word-handout.pdf"
     }
   };
 
@@ -115,8 +124,8 @@ export default function TopicsPage() {
                            <span className="bg-yellow-400 text-blue-900 w-10 h-10 rounded-full flex items-center justify-center font-black">{index + 1}</span>
                            <h4 className="text-3xl font-bold text-[#1e3a8a]">{tool.name}</h4>
                         </div>
-                        <p className="text-2xl leading-relaxed text-gray-600 mb-6">{tool.info}</p>
-                        <button onClick={() => speak(tool.info)} className="bg-[#1e3a8a] text-white px-8 py-3 rounded-xl font-bold flex items-center gap-3 hover:bg-blue-700 transition-colors shadow-md">🔊 اسمع الشرح</button>
+                        {tool.info && <p className="text-2xl leading-relaxed text-gray-600 mb-6">{tool.info}</p>}
+                        {tool.info && <button onClick={() => speak(tool.info)} className="bg-[#1e3a8a] text-white px-8 py-3 rounded-xl font-bold flex items-center gap-3 hover:bg-blue-700 transition-colors shadow-md">🔊 اسمع الشرح</button>}
                       </div>
                       {tool.img && (
                         <div className="w-full md:w-2/5 rounded-2xl overflow-hidden shadow-xl border-4 border-gray-50">
@@ -148,7 +157,7 @@ export default function TopicsPage() {
 
       {showModal === 'help' && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
-          <div className="bg-white p-10 rounded-[40px] w-full max-w-xl shadow-2xl border-[8px] border-[#00c853] text-center animate-pop-in">
+          <div className="bg-white p-10 rounded-[40px] w-full max-w-xl shadow-2xl border-[8px] border-[8px] border-[#00c853] text-center animate-pop-in">
             <h3 className="text-4xl font-black text-[#1e3a8a] mb-8 underline decoration-blue-200">دليل الاستخدام 🧐</h3>
             <ul className="text-right space-y-6 mb-10 text-2xl font-bold text-gray-700 px-4">
               <li>1. الروابط في الأعلى تنقلك بين أقسام الموقع.</li>
